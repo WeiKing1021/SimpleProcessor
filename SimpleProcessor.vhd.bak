@@ -1,0 +1,188 @@
+--F=000 Rx ←[Ry] 
+--F=001 Rx ← D 
+--F=010 Rx ←[Rx]+[Ry] 
+--F=011 Rx ←[Rx]-[Ry] 
+LIBRARY ieee ;
+USE ieee.std_logic_1164.all ;
+USE ieee.std_logic_unsigned.all ;
+--USE work.subccts.all ;
+ENTITY project IS
+PORT ( 
+	Data : IN STD_LOGIC_VECTOR(15 DOWNTO 0) ;--DATA 16bit  sw0~16
+	Reset : IN STD_LOGIC ;--T29
+	w : IN STD_LOGIC ;    --sw17
+	Clock : IN STD_LOGIC ;--T28
+	--F, Rx, Ry : IN STD_LOGIC_VECTOR(2 DOWNTO 0) ;
+	Done : BUFFER STD_LOGIC ;--LEDG
+	cloAD15 : IN STD_LOGIC ;
+    ps2_clk    : IN  STD_LOGIC;                     
+    ps2_data   : IN  STD_LOGIC;
+	BusWires : BUFFER STD_LOGIC_VECTOR(15 DOWNTO 0) 
+);
+END project ;
+
+ARCHITECTURE Behavior OF project IS
+SIGNAL F, Rx, Ry :STD_LOGIC_VECTOR(2 DOWNTO 0) ;--3+3+3=9
+SIGNAL Rin,Rout : STD_LOGIC_VECTOR(0 TO 7) ;--8個register的in、out
+SIGNAL AddSub : STD_LOGIC_VECTOR(0 TO 1) ;
+SIGNAL Clear, High : STD_LOGIC ;
+SIGNAL Extern,Ain, Gin, Gout, FRin : STD_LOGIC ;--data放入bus的開關=Extern
+SIGNAL Count, Zero : STD_LOGIC_VECTOR(1 DOWNTO 0) ;--count決定T0~T3
+SIGNAL I, X, Y : STD_LOGIC_VECTOR(0 TO 7) ;--3to8register
+SIGNAL T: STD_LOGIC_VECTOR(0 TO 3) ;--T0,T1,T2,T3
+SIGNAL R0, R1, R2, R3 ,R4 ,R5 ,R6 ,R7: STD_LOGIC_VECTOR(15 DOWNTO 0) ;--8個register都存16bit
+SIGNAL A, Sum, G : STD_LOGIC_VECTOR(15 DOWNTO 0) ;--存16bit
+SIGNAL Func, FuncReg : STD_LOGIC_VECTOR(1 TO 9) ;--Func=F+Rx+Ry 3+3+3=9 FuncReg存Func
+SIGNAL Rz: STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL Rzout: STD_LOGIC ;
+SIGNAL Rtem: STD_LOGIC_VECTOR(15 DOWNTO 0) ;
+SIGNAL Rtemin: STD_LOGIC ;
+SIGNAL Rtemout: STD_LOGIC ;
+
+SIGNAL  ascii_new  :STD_LOGIC;                  
+SIGNAL    temp_in : STD_LOGIC_VECTOR(6 DOWNTO 0); 
+--SIGNAL    temp : STD_LOGIC_VECTOR(6 DOWNTO 0); 
+--SIGNAL Clock : STD_LOGIC ;
+--SIGNAL redgkey2 : STD_LOGIC ;
+
+component ps2_keyboard_to_ascii IS
+  GENERIC(
+      clk_freq                  : INTEGER := 50_000_000; --system clock frequency in Hz
+      ps2_debounce_counter_size : INTEGER := 8);         --set such that 2^size/clk_freq = 5us (size = 8 for 50MHz)
+  PORT(
+      clk        : IN  STD_LOGIC;                     --system clock input
+      ps2_clk    : IN  STD_LOGIC;                     --clock signal from PS2 keyboard
+      ps2_data   : IN  STD_LOGIC;                     --data signal from PS2 keyboard
+      ascii_new  : OUT STD_LOGIC;                     --output flag indicating new ASCII value
+      ascii_code : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)); --ASCII value
+END component;
+
+component dec3to8 is 
+PORT ( 
+W : IN STD_LOGIC_VECTOR(2 DOWNTO 0);--3
+En : IN STD_LOGIC;
+Y : OUT STD_LOGIC_VECTOR(0 TO 7));--8
+END component;
+
+component dec2to4 is 
+PORT ( 
+W : IN STD_LOGIC_VECTOR(1 DOWNTO 0);--2
+En : IN STD_LOGIC;
+Y : OUT STD_LOGIC_VECTOR(0 TO 3));--4
+END component;
+
+component regn IS 
+GENERIC (n : INTEGER := 16);
+PORT ( 
+R : IN STD_LOGIC_VECTOR(n-1 DOWNTO 0);
+Rin, Clock : IN STD_LOGIC; 
+Q : BUFFER STD_LOGIC_VECTOR(n-1 DOWNTO 0)); 
+END component;
+
+component trin IS
+GENERIC ( N : INTEGER := 16 ) ;
+PORT ( X : IN STD_LOGIC_VECTOR(N-1 DOWNTO 0) ;
+E : IN STD_LOGIC ;
+F : OUT STD_LOGIC_VECTOR(N-1 DOWNTO 0) ) ;
+END component ;
+
+component upcount IS
+PORT ( Clear, Clock : IN STD_LOGIC ;
+Q : BUFFER STD_LOGIC_VECTOR(1 DOWNTO 0) ) ;
+END component;
+
+BEGIN
+-----
+AAA:ps2_keyboard_to_ascii port map (cloAD15,ps2_clk,ps2_data, ascii_new,temp_in);
+Rz<="0000000000000001";
+F(2 downto 0)<=Data(15 downto 13);--DATA前九個分別為F,Rx,Ry
+Rx(2 downto 0)<=Data(12 downto 10);
+Ry(2 downto 0)<=Data(9 downto 7);
+Zero <= "00" ; High <= '1' ;
+
+Clear <= Done OR (NOT w AND T(0)) ;--clear情況
+counter: upcount PORT MAP ( Clear, Clock, Count ) ;
+decT: dec2to4 PORT MAP ( Count, High, T );--count=00為T0  01為T1 10為T2 11為T3
+Func <= F & Rx &Ry ;--Func=F+Rx+Ry
+FRin <= w AND T(0) ;--FRin打開的時機 為W啟動且T0
+
+functionreg: regn GENERIC MAP ( N => 9 )--這個register存9bit
+PORT MAP ( Func, FRin, Clock, FuncReg) ;
+decI: dec3to8 PORT MAP (FuncReg(1 TO 3), High, I ) ;
+decX: dec3to8 PORT MAP (FuncReg(4 TO 6), High, X ) ;
+decY: dec3to8 PORT MAP (FuncReg(7 TO 9), High, Y ) ;
+
+Extern <= I(1) AND T(1) ;--Extern打開的時機為I1且T1
+Done <= ((I(0) OR I(1) or I(6)) AND T(1)) OR ((I(2) OR I(3)or I(4)or I(5)or I(7)) AND T(3)) ;--done顯示的時機
+Ain <= (I(2) OR I(3)or I(5)or I(7)) AND T(1) ;--Ain打開的時機
+Gin <= (I(2) OR I(3)or I(5)or I(7)) AND T(2) ;--Gin打開的時機
+Gout <= (I(2) OR I(3)or I(5)or I(7)) AND T(3) ;--Gout打開的時機
+with I select
+AddSub<="11" when "00000001",--I7
+	    "10" WHEN "00000100",--I5
+	    "01" WHEN "00010000",--I3
+	    "00" WHEN OTHERS ;--I2
+
+
+
+RegCntl:
+FOR k IN 0 TO 7 GENERATE
+Rin(k)	<= ((I(0) OR I(1)OR I(6)) AND T(1) AND X(k)) OR--8個register Rin打開時機
+((I(2) OR I(3)OR I(5)OR I(7)) AND T(3) AND X(k)) or
+(I(4) and T(2) and X(k)) or (I(4) and T(3) and Y(k));
+
+
+Rout(k) <=((I(0) or I(6))AND T(1) AND Y(k)) OR--8個register Rout打開時機
+((I(2) OR I(3)OR I(4)OR I(5)OR I(7)) AND T(1) AND X(k)) or
+((I(2) or I(3)or I(4)or I(7))and T(2)and Y(k));
+END GENERATE RegCntl;
+
+
+Rzout<=I(5)and T(2);
+Rtemin<=I(4)and T(1);
+Rtemout<=I(4)and T(3);
+
+
+tri_extern:trin PORT MAP ( Data,Extern,BusWires ) ;--data放入BusWires
+reg0: regn PORT MAP (BusWires, Rin(0), Clock, R0 ) ;--BusWires放入R0
+reg1: regn PORT MAP (BusWires, Rin(1), Clock, R1 ) ;
+reg2: regn PORT MAP (BusWires, Rin(2), Clock, R2 ) ;
+reg3: regn PORT MAP (BusWires, Rin(3), Clock, R3 ) ;
+reg4: regn PORT MAP (BusWires, Rin(4), Clock, R4 ) ;
+reg5: regn PORT MAP (BusWires, Rin(5), Clock, R5 ) ;
+reg6: regn PORT MAP (BusWires, Rin(6), Clock, R6 ) ;
+reg7: regn PORT MAP (BusWires, Rin(7), Clock, R7 ) ;
+regtem: regn PORT MAP (BusWires, Rtemin, Clock, Rtem ) ;--
+tri0: trin PORT MAP ( R0, Rout(0),BusWires) ;--R0放入BusWires
+tri1: trin PORT MAP ( R1, Rout(1),BusWires) ;
+tri2: trin PORT MAP ( R2, Rout(2),BusWires) ;
+tri3: trin PORT MAP ( R3, Rout(3),BusWires) ;
+tri4: trin PORT MAP ( R4, Rout(4),BusWires ) ;
+tri5: trin PORT MAP ( R5, Rout(5),BusWires ) ;
+tri6: trin PORT MAP ( R6, Rout(6),BusWires ) ;
+tri7: trin PORT MAP ( R7, Rout(7),BusWires ) ;
+tritem: trin PORT MAP ( Rtem, Rtemout,BusWires ) ;--
+triz: trin PORT MAP ( Rz, Rzout,BusWires ) ;--
+
+
+regA: regn PORT MAP (BusWires, Ain, Clock, A ) ;
+
+alu:
+WITH AddSub SELECT
+Sum <= A + BusWires WHEN "00",
+	   A - BusWires WHEN "01",
+	   A + BusWires WHEN "10",
+	   A xor BusWires WHEN OTHERS ;
+regG: regn PORT MAP ( Sum, Gin, Clock, G ) ;
+triG: trin PORT MAP ( G, Gout,BusWires ) ;
+
+
+
+END Behavior;
+--Rin(k) <= ((I(0) OR I(1)OR I(6)) AND T(1) AND X(k)) OR--8個register Rin打開時機
+--((I(2) OR I(3)OR I(4)OR I(5)OR I(7)) AND T(3) AND X(k)) or
+--(I(4) and T(2) and X(k)) or (I(4) and T(3) and Y(k));
+
+--Rout(k) <= ((I(0) or I(6))AND T(1) AND Y(k)) OR--8個register Rout打開時機
+--((I(2) OR I(3)OR I(4)OR I(5)OR I(7)) AND T(1) AND X(k)) or
+--((I(2) or I(3)or I(4)or I(7))and T(2)and Y(k));

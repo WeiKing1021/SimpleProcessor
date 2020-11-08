@@ -1,0 +1,237 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "REG0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "REG1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "REG2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "REG3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "REG4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "REG5[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG5[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG5[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG5[3]",
+					"strict" : false
+				},
+				{
+					"name" : "REG6[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG6[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG6[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG6[3]",
+					"strict" : false
+				},
+				{
+					"name" : "REG7[0]",
+					"strict" : false
+				},
+				{
+					"name" : "REG7[1]",
+					"strict" : false
+				},
+				{
+					"name" : "REG7[2]",
+					"strict" : false
+				},
+				{
+					"name" : "REG7[3]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_DATA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_DATA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_DATA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_DATA[3]",
+					"strict" : false
+				},
+				{
+					"name" : "OVER_FLOW",
+					"strict" : false
+				},
+				{
+					"name" : "DONE",
+					"strict" : false
+				},
+				{
+					"name" : "STEP[0]",
+					"strict" : false
+				},
+				{
+					"name" : "STEP[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[13]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[12]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[11]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[4]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[6]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[5]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[9]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[8]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[7]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[2]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN[3]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK",
+					"strict" : false
+				},
+				{
+					"name" : "RESET",
+					"strict" : false
+				},
+				{
+					"name" : "ENABLE",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

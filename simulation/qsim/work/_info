@@ -1,0 +1,147 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/QuartusProject/SimpleProcessor/simulation/qsim
+Ehard_block
+Z1 w1577615824
+Z2 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z3 DPx11 cyclone10lp 21 cyclone10lp_atom_pack 0 22 @K_B1clB5?bHSoD[5AnUU3
+Z4 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z6 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z7 DPx11 cyclone10lp 22 cyclone10lp_components 0 22 9<]d_X1IHoc6C5IVSLhkd2
+R0
+Z8 8SimpleProcessor.vho
+Z9 FSimpleProcessor.vho
+l0
+L34
+VNa6aQ<>?R^Lo[VlRkm1[U0
+!s100 ;RFJ40L14kegE><<AhdRk3
+Z10 OV;C;10.5b;63
+32
+Z11 !s110 1577615825
+!i10b 1
+Z12 !s108 1577615825.000000
+Z13 !s90 -work|work|SimpleProcessor.vho|
+Z14 !s107 SimpleProcessor.vho|
+!i113 1
+Z15 o-work work
+Z16 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+DEx4 work 10 hard_block 0 22 Na6aQ<>?R^Lo[VlRkm1[U0
+l64
+L50
+V`^CmQg<48W[ez[JL_5@Yn2
+!s100 2S?JL;LJ@<3:BHXTNcXS]3
+R10
+32
+R11
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
+Esimpleprocessor
+R1
+R3
+R7
+R2
+Z17 DPx6 altera 11 dffeas_pack 0 22 :S1C`o89Vbe5bV6`:6CaB3
+R4
+R5
+R6
+Z18 DPx6 altera 28 altera_primitives_components 0 22 z?[99Tn<@QGNik3V1c6ah1
+R0
+R8
+R9
+l0
+L79
+V8k17YHQK`0ZgEZ6?TZOI60
+!s100 =kGGm:>gYdB3QbOPXBj3T0
+R10
+32
+R11
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
+Astructure
+R3
+R7
+R2
+R17
+R4
+R5
+R6
+R18
+DEx4 work 15 simpleprocessor 0 22 8k17YHQK`0ZgEZ6?TZOI60
+l791
+L280
+VaW@j3cVPMfUf]]JMmAlO62
+!s100 :>QVbKlmfS@j[3zdL1KJI1
+R10
+32
+R11
+!i10b 1
+R12
+R13
+R14
+!i113 1
+R15
+R16
+Esimpleprocessor_vhd_vec_tst
+Z19 w1577615823
+R5
+R6
+R0
+Z20 8Waveform.vwf.vht
+Z21 FWaveform.vwf.vht
+l0
+L31
+VEDUDM3Dc<haUHB:<?g4eK2
+!s100 GeOkz_N5<_OPVV0mS307H2
+R10
+32
+R11
+!i10b 1
+R12
+Z22 !s90 -work|work|Waveform.vwf.vht|
+Z23 !s107 Waveform.vwf.vht|
+!i113 1
+R15
+R16
+Asimpleprocessor_arch
+R5
+R6
+Z24 DEx4 work 27 simpleprocessor_vhd_vec_tst 0 22 EDUDM3Dc<haUHB:<?g4eK2
+l72
+L33
+VOCCFPOb52L0`[NV1n_kgA0
+!s100 ?E>=RJ;LMB7?odgBk20fl1
+R10
+32
+R11
+!i10b 1
+R12
+R22
+R23
+!i113 1
+R15
+R16

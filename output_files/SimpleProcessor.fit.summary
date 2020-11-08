@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sun Dec 29 18:40:09 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : SimpleProcessor
+Top-level Entity Name : SimpleProcessor
+Family : Cyclone 10 LP
+Device : 10CL006YE144C6G
+Timing Models : Final
+Total logic elements : 117 / 6,272 ( 2 % )
+    Total combinational functions : 99 / 6,272 ( 2 % )
+    Dedicated logic registers : 55 / 6,272 ( < 1 % )
+Total registers : 55
+Total pins : 57 / 89 ( 64 % )
+Total virtual pins : 0
+Total memory bits : 0 / 276,480 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )

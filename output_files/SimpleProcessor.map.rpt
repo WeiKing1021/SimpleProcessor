@@ -1,0 +1,561 @@
+Analysis & Synthesis report for SimpleProcessor
+Sun Dec 29 18:40:02 2019
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Parameter Settings for User Entity Instance: Top-level Entity: |SimpleProcessor
+ 11. Parameter Settings for User Entity Instance: MyRegister:REG_0
+ 12. Parameter Settings for User Entity Instance: MyRegister:REG_1
+ 13. Parameter Settings for User Entity Instance: MyRegister:REG_2
+ 14. Parameter Settings for User Entity Instance: MyRegister:REG_3
+ 15. Parameter Settings for User Entity Instance: MyRegister:REG_4
+ 16. Parameter Settings for User Entity Instance: MyRegister:REG_5
+ 17. Parameter Settings for User Entity Instance: MyRegister:REG_6
+ 18. Parameter Settings for User Entity Instance: MyRegister:REG_7
+ 19. Parameter Settings for User Entity Instance: MyRegister:REG_A
+ 20. Parameter Settings for User Entity Instance: MyRegister:REG_G
+ 21. Parameter Settings for User Entity Instance: MultiPlexers:BUS_SELECTOR
+ 22. Parameter Settings for User Entity Instance: SimpleOp:OP
+ 23. Parameter Settings for User Entity Instance: RealControlUnit:CONTROL_UNIT
+ 24. Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec2To4:COUNTER_DECODER"
+ 25. Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec3To8:Y_DECODER"
+ 26. Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec3To8:X_DECODER"
+ 27. Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec4To16:COMMAND_DECODER"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sun Dec 29 18:40:02 2019       ;
+; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                      ; SimpleProcessor                             ;
+; Top-level Entity Name              ; SimpleProcessor                             ;
+; Family                             ; Cyclone 10 LP                               ;
+; Total logic elements               ; 143                                         ;
+;     Total combinational functions  ; 99                                          ;
+;     Dedicated logic registers      ; 55                                          ;
+; Total registers                    ; 55                                          ;
+; Total pins                         ; 57                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Top-level entity name                                            ; SimpleProcessor    ; SimpleProcessor    ;
+; Family name                                                      ; Cyclone 10 LP      ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                       ;
++----------------------------------+-----------------+-----------------------+-------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type             ; File Name with Absolute Path                          ; Library ;
++----------------------------------+-----------------+-----------------------+-------------------------------------------------------+---------+
+; SimpleProcessor.vhd              ; yes             ; User VHDL File        ; D:/QuartusProject/SimpleProcessor/SimpleProcessor.vhd ;         ;
+; MyRegister.vhd                   ; yes             ; User VHDL File        ; D:/QuartusProject/SimpleProcessor/MyRegister.vhd      ;         ;
+; RealControlUnit.vhd              ; yes             ; User VHDL File        ; D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd ;         ;
+; ProgramCounter.vhd               ; yes             ; User VHDL File        ; D:/QuartusProject/SimpleProcessor/ProgramCounter.vhd  ;         ;
+; SimpleOp.vhd                     ; yes             ; User VHDL File        ; D:/QuartusProject/SimpleProcessor/SimpleOp.vhd        ;         ;
+; multiplexers.vhd                 ; yes             ; Auto-Found VHDL File  ; D:/QuartusProject/SimpleProcessor/multiplexers.vhd    ;         ;
+; dec4to16.vhd                     ; yes             ; Auto-Found VHDL File  ; D:/QuartusProject/SimpleProcessor/dec4to16.vhd        ;         ;
+; dec3to8.vhd                      ; yes             ; Auto-Found VHDL File  ; D:/QuartusProject/SimpleProcessor/dec3to8.vhd         ;         ;
+; functioncache.vhd                ; yes             ; Auto-Found VHDL File  ; D:/QuartusProject/SimpleProcessor/functioncache.vhd   ;         ;
+; dec2to4.vhd                      ; yes             ; Auto-Found VHDL File  ; D:/QuartusProject/SimpleProcessor/dec2to4.vhd         ;         ;
++----------------------------------+-----------------+-----------------------+-------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 143         ;
+;                                             ;             ;
+; Total combinational functions               ; 99          ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 75          ;
+;     -- 3 input functions                    ; 20          ;
+;     -- <=2 input functions                  ; 4           ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 94          ;
+;     -- arithmetic mode                      ; 5           ;
+;                                             ;             ;
+; Total registers                             ; 55          ;
+;     -- Dedicated logic registers            ; 55          ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 57          ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; CLOCK~input ;
+; Maximum fan-out                             ; 55          ;
+; Total fan-out                               ; 665         ;
+; Average fan-out                             ; 2.48        ;
++---------------------------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                         ;
++---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                  ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                               ; Entity Name     ; Library Name ;
++---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------+-----------------+--------------+
+; |SimpleProcessor                            ; 99 (0)              ; 55 (0)                    ; 0           ; 0            ; 0       ; 0         ; 57   ; 0            ; |SimpleProcessor                                                                  ; SimpleProcessor ; work         ;
+;    |MultiPlexers:BUS_SELECTOR|              ; 47 (47)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MultiPlexers:BUS_SELECTOR                                        ; MultiPlexers    ; work         ;
+;    |MyRegister:REG_0|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_0                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_1|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_1                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_2|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_2                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_3|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_3                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_4|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_4                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_5|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_5                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_6|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_6                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_7|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_7                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_A|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_A                                                 ; MyRegister      ; work         ;
+;    |MyRegister:REG_G|                       ; 0 (0)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|MyRegister:REG_G                                                 ; MyRegister      ; work         ;
+;    |RealControlUnit:CONTROL_UNIT|           ; 37 (33)             ; 15 (3)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|RealControlUnit:CONTROL_UNIT                                     ; RealControlUnit ; work         ;
+;       |Dec4To16:COMMAND_DECODER|            ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|RealControlUnit:CONTROL_UNIT|Dec4To16:COMMAND_DECODER            ; Dec4To16        ; work         ;
+;       |FunctionCache:FUNCTION_CACHE_ENTITY| ; 0 (0)               ; 10 (10)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|RealControlUnit:CONTROL_UNIT|FunctionCache:FUNCTION_CACHE_ENTITY ; FunctionCache   ; work         ;
+;       |ProgramCounter:PRO_COUNTER|          ; 2 (2)               ; 2 (2)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|RealControlUnit:CONTROL_UNIT|ProgramCounter:PRO_COUNTER          ; ProgramCounter  ; work         ;
+;    |SimpleOp:OP|                            ; 15 (15)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SimpleProcessor|SimpleOp:OP                                                      ; SimpleOp        ; work         ;
++---------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 55    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 40    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 50    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+; 1:1                ; 4 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |SimpleProcessor|SimpleOp:OP|Add0                     ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |SimpleProcessor|SimpleOp:OP|Add0                     ;
+; 11:1               ; 4 bits    ; 28 LEs        ; 24 LEs               ; 4 LEs                  ; No         ; |SimpleProcessor|MultiPlexers:BUS_SELECTOR|BUS_OUT[0] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |SimpleProcessor ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; REGISTER_SIZE  ; 4     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_0 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_1 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_2 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_3 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_4 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_5 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_6 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_7 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_A ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MyRegister:REG_G ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; register_size  ; 4     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: MultiPlexers:BUS_SELECTOR ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; register_size  ; 4     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: SimpleOp:OP ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; register_size  ; 4     ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: RealControlUnit:CONTROL_UNIT ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; register_size  ; 4     ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec2To4:COUNTER_DECODER"                                      ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; enable      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; data_out[3] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec3To8:Y_DECODER" ;
++--------+-------+----------+------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                        ;
++--------+-------+----------+------------------------------------------------+
+; enable ; Input ; Info     ; Stuck at VCC                                   ;
++--------+-------+----------+------------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec3To8:X_DECODER" ;
++--------+-------+----------+------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                        ;
++--------+-------+----------+------------------------------------------------+
+; enable ; Input ; Info     ; Stuck at VCC                                   ;
++--------+-------+----------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "RealControlUnit:CONTROL_UNIT|Dec4To16:COMMAND_DECODER"                                         ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; enable          ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; data_out[15..4] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 57                          ;
+; cycloneiii_ff         ; 55                          ;
+;     ENA               ; 10                          ;
+;     ENA CLR           ; 40                          ;
+;     plain             ; 5                           ;
+; cycloneiii_lcell_comb ; 99                          ;
+;     arith             ; 5                           ;
+;         3 data inputs ; 5                           ;
+;     normal            ; 94                          ;
+;         2 data inputs ; 4                           ;
+;         3 data inputs ; 15                          ;
+;         4 data inputs ; 75                          ;
+;                       ;                             ;
+; Max LUT depth         ; 15.40                       ;
+; Average LUT depth     ; 11.01                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Sun Dec 29 18:39:51 2019
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off SimpleProcessor -c SimpleProcessor
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file simpleprocessor.vhd
+    Info (12022): Found design unit 1: SimpleProcessor-behavior File: D:/QuartusProject/SimpleProcessor/SimpleProcessor.vhd Line: 27
+    Info (12023): Found entity 1: SimpleProcessor File: D:/QuartusProject/SimpleProcessor/SimpleProcessor.vhd Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file myregister.vhd
+    Info (12022): Found design unit 1: MyRegister-behavior File: D:/QuartusProject/SimpleProcessor/MyRegister.vhd Line: 18
+    Info (12023): Found entity 1: MyRegister File: D:/QuartusProject/SimpleProcessor/MyRegister.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file realcontrolunit.vhd
+    Info (12022): Found design unit 1: RealControlUnit-dataflow File: D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd Line: 30
+    Info (12023): Found entity 1: RealControlUnit File: D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd Line: 6
+Warning (12019): Can't analyze file -- file IR.vhd is missing
+Info (12021): Found 2 design units, including 1 entities, in source file programcounter.vhd
+    Info (12022): Found design unit 1: ProgramCounter-behavior File: D:/QuartusProject/SimpleProcessor/ProgramCounter.vhd Line: 14
+    Info (12023): Found entity 1: ProgramCounter File: D:/QuartusProject/SimpleProcessor/ProgramCounter.vhd Line: 6
+Warning (12019): Can't analyze file -- file Det3To8.vhd is missing
+Info (12021): Found 2 design units, including 1 entities, in source file simpleop.vhd
+    Info (12022): Found design unit 1: SimpleOp-dataflow File: D:/QuartusProject/SimpleProcessor/SimpleOp.vhd Line: 18
+    Info (12023): Found entity 1: SimpleOp File: D:/QuartusProject/SimpleProcessor/SimpleOp.vhd Line: 6
+Info (12127): Elaborating entity "SimpleProcessor" for the top level hierarchy
+Info (12128): Elaborating entity "MyRegister" for hierarchy "MyRegister:REG_0" File: D:/QuartusProject/SimpleProcessor/SimpleProcessor.vhd Line: 137
+Warning (10492): VHDL Process Statement warning at MyRegister.vhd(25): signal "RESET" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/QuartusProject/SimpleProcessor/MyRegister.vhd Line: 25
+Warning (12125): Using design file multiplexers.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: MultiPlexers-dataflow File: D:/QuartusProject/SimpleProcessor/multiplexers.vhd Line: 21
+    Info (12023): Found entity 1: MultiPlexers File: D:/QuartusProject/SimpleProcessor/multiplexers.vhd Line: 6
+Info (12128): Elaborating entity "MultiPlexers" for hierarchy "MultiPlexers:BUS_SELECTOR" File: D:/QuartusProject/SimpleProcessor/SimpleProcessor.vhd Line: 153
+Info (12128): Elaborating entity "SimpleOp" for hierarchy "SimpleOp:OP" File: D:/QuartusProject/SimpleProcessor/SimpleProcessor.vhd Line: 160
+Info (12128): Elaborating entity "RealControlUnit" for hierarchy "RealControlUnit:CONTROL_UNIT" File: D:/QuartusProject/SimpleProcessor/SimpleProcessor.vhd Line: 163
+Warning (12125): Using design file dec4to16.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: Dec4To16-dataflow File: D:/QuartusProject/SimpleProcessor/dec4to16.vhd Line: 14
+    Info (12023): Found entity 1: Dec4To16 File: D:/QuartusProject/SimpleProcessor/dec4to16.vhd Line: 6
+Info (12128): Elaborating entity "Dec4To16" for hierarchy "RealControlUnit:CONTROL_UNIT|Dec4To16:COMMAND_DECODER" File: D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd Line: 124
+Warning (12125): Using design file dec3to8.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: Dec3To8-dataflow File: D:/QuartusProject/SimpleProcessor/dec3to8.vhd Line: 14
+    Info (12023): Found entity 1: Dec3To8 File: D:/QuartusProject/SimpleProcessor/dec3to8.vhd Line: 6
+Info (12128): Elaborating entity "Dec3To8" for hierarchy "RealControlUnit:CONTROL_UNIT|Dec3To8:X_DECODER" File: D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd Line: 125
+Warning (12125): Using design file functioncache.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: FunctionCache-behavior File: D:/QuartusProject/SimpleProcessor/functioncache.vhd Line: 15
+    Info (12023): Found entity 1: FunctionCache File: D:/QuartusProject/SimpleProcessor/functioncache.vhd Line: 6
+Info (12128): Elaborating entity "FunctionCache" for hierarchy "RealControlUnit:CONTROL_UNIT|FunctionCache:FUNCTION_CACHE_ENTITY" File: D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd Line: 129
+Info (12128): Elaborating entity "ProgramCounter" for hierarchy "RealControlUnit:CONTROL_UNIT|ProgramCounter:PRO_COUNTER" File: D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd Line: 138
+Warning (12125): Using design file dec2to4.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: Dec2To4-dataflow File: D:/QuartusProject/SimpleProcessor/dec2to4.vhd Line: 14
+    Info (12023): Found entity 1: Dec2To4 File: D:/QuartusProject/SimpleProcessor/dec2to4.vhd Line: 6
+Info (12128): Elaborating entity "Dec2To4" for hierarchy "RealControlUnit:CONTROL_UNIT|Dec2To4:COUNTER_DECODER" File: D:/QuartusProject/SimpleProcessor/RealControlUnit.vhd Line: 141
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 205 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 17 input pins
+    Info (21059): Implemented 40 output pins
+    Info (21061): Implemented 148 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
+    Info: Peak virtual memory: 4786 megabytes
+    Info: Processing ended: Sun Dec 29 18:40:02 2019
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:24
+
+
